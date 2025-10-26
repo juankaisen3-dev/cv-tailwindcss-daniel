@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>CV Daniel_Tech</title>
+  <style>
+    :root {
+      --main-bg: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      --accent: #ffcc00;
+      --text-light: #f0f0f0;
+      --box-bg: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--main-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      border-left: 4px solid var(--accent);
+      padding-left: 15px;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+
+    .skill-box, .project {
+      background-color: var(--box-bg);
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.85em;
+      margin-top: 40px;
+      color: #aaa;
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .section {
+        padding-left: 10px;
+        border-left: 3px solid var(--accent);
+      }
+
+      .skill-box, .project {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Daniel_verse</h1>
+    <p class="contact">
+      📍 Akanda, Gabon<br>
+      📧 juankaisen3@email.com<br>
+      🌐 <a href="https://github.com/juankaisen3-dev">https://github.com/juankaisen3-dev</a>
+    </p>
+
+    <div class="section">
+      <h2>Profil</h2>
+      <p>Créateur hybride entre tech et art, je développe des interfaces, bots et modules expressifs. Mon univers : Daniel_tech&Verse, où chaque fiche, badge ou avatar est une extension de l'identité digitale.</p>
+    </div>
+
+    <div class="section">
+      <h2>Compétences</h2>
+      <div class="skills-grid">
+        <div class="skill-box">💻 React, HTML, CSS, JS, Tailwind</div>
+        <div class="skill-box">🎨 Branding visuel & avatars</div>
+        <div class="skill-box">🗣️ Rédaction stylisée & multilingue</div>
+        <div class="skill-box">📱 Responsive design & mobile-first</div>
+        <div class="skill-box">🤖 Création de bots, interfaces et modules</div>
+        <div class="skill-box">🧠 Remix linguistique & émotionnel</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Projets phares</h2>
+      <div class="project">
+        <strong>JUANverse Console & Badges</strong><br>
+        Système modulaire pour avatars, fiches et notifications stylisées.
+      </div>
+      <div class="project">
+        <strong>Bot D_C “Alva”</strong><br>
+        Bot à voix humaine avec style adaptatif et branding clanique.
+      </div>
+     
+      <div class="project">
+        <strong>WH-Fiches & Quiz Clan</strong><br>
+        Fiches linguistiques interactives pour apprentissage en groupe.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Langues</h2>
+      <p>🇫🇷 Français : natif<br>🇬🇧 Anglais : courant<br>🏴 Corse : remix créatif</p>
+    </div>
+
+    <div class="section">
+      <h2>Centres d’intérêt</h2>
+      <p>Culture manga & gaming, remix linguistique, création d’identités digitales, soutien des frangins maudits, collaboration clanique.</p>
+    </div>
+      
+    </div>
+    <div class="footer">
+  <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 10px;">
+    <!-- GitHub -->
+    <a href="https://github.com/juankaisen3-dev" target="_blank" aria-label="GitHub">
+      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
+        <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.45.11-3.02 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.57.23 2.73.11 3.02.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.41-5.27 5.7.42.36.8 1.09.8 2.2v3.26c0 .31.21.68.8.56A10.5 10.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
+      </svg>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/in/juan5" target="_blank" aria-label="LinkedIn">
+      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
+        <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.16h.05c.5-.95 1.72-1.95 3.55-1.95 3.8 0 4.5 2.5 4.5 5.75V24h-4v-7.5c0-1.8-.03-4.1-2.5-4.1-2.5 0-2.9 1.95-2.9 3.95V24h-4V8z"/>
+      </svg>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:juankaisen5@email.com" aria-label="Email">
+      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
+        <path d="M12 13.065L.5 6.5V18c0 .828.672 1.5 1.5 1.5h20c.828 0 1.5-.672 1.5-1.5V6.5l-11.5 6.565zM22.5 4.5h-21c-.828 0-1.5.672-1.5 1.5v.5l12 6.857L24 6.5v-.5c0-.828-.672-1.5-1.5-1.5z"/>
+      </svg>
+    </a>
+  </div>
+   <div class="footer">
+      © 2025 Daniel_Tech&Verse – CV  avec style et flair😌
+  </div>
+</body>
+</html>
