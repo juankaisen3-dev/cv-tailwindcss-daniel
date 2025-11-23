@@ -1,206 +1,929 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Daniel_Tech — CV & Portfolio</title>
-  <meta name="description" content="Daniel_Tech — développeur & créateur d'identités digitales. React, Tailwind, UI/UX, bots et projets créatifs. CV téléchargeable." />
+  <title>Daniel_Tech — Développeur FullStack</title>
+  <meta name="description" content="Daniel_Tech — Développeur FullStack créatif. React, Node.js, UI/UX, applications web modernes. CV téléchargeable." />
   <!-- Open Graph -->
-  <meta property="og:title" content="Daniel_Tech — CV & Portfolio" />
-  <meta property="og:description" content="Développeur & créateur d'identités digitales. React, Tailwind, UI/UX, bots et projets créatifs." />
+  <meta property="og:title" content="Daniel_Tech — Développeur FullStack" />
+  <meta property="og:description" content="Développeur FullStack créatif spécialisé en applications web modernes et expériences utilisateur immersives." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-site.example/" />
-  <meta property="og:image" content="https://your-site.example/og-image.png" />
+  <meta property="og:url" content="https://daniel-tech.com" />
+  <meta property="og:image" content="https://daniel-tech.com/og-image.png" />
   <link rel="icon" href="/favicon.ico" />
+  
+  <!-- Polices Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+  
   <script src="https://cdn.tailwindcss.com"></script>
-
+  
   <style>
-    /* petites personnalisations */
     :root {
-      --accent: #ffcc00;
-      --muted: #94a3b8;
-      --card-bg: rgba(255,255,255,0.04);
+      --accent: #00f5ff;
+      --accent-dark: #0099ff;
+      --accent-glow: rgba(0, 245, 255, 0.3);
+      --dark: #0a0a0f;
+      --darker: #050508;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
     }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #0f172a 100%);
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .font-space {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+      50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(0, 245, 255, 0.1); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Effets 3D */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+
+    .transform-3d {
+      transform-style: preserve-3d;
+    }
+
     .glass {
       background: var(--card-bg);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
     }
-    /* avatar gradient */
-    .avatar-gradient {
-      background: linear-gradient(135deg,#0f172a 0%, #0ea5a4 50%, var(--accent) 100%);
+
+    .glass-accent {
+      background: rgba(0, 245, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+    }
+
+    .card-3d {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+    }
+
+    .card-3d:hover {
+      transform: translateY(-10px) rotateX(5deg) scale(1.02);
+      box-shadow: 
+        0 20px 40px rgba(0, 245, 255, 0.2),
+        0 0 80px rgba(0, 245, 255, 0.1);
+    }
+
+    .btn-neon {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      border: none;
+      color: var(--darker);
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-neon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-neon:hover::before {
+      left: 100%;
+    }
+
+    .btn-neon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 245, 255, 0.4);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-glow {
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    .animate-slide-in {
+      animation: slideIn 0.8s ease-out forwards;
+    }
+
+    /* Navigation */
+    .nav-blur {
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Particules */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Sections */
+    .section-3d {
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    /* Avatar 3D */
+    .avatar-3d {
+      transform-style: preserve-3d;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .avatar-3d::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 20px;
+      background: radial-gradient(ellipse at center, rgba(0, 245, 255, 0.4) 0%, transparent 70%);
+      filter: blur(10px);
+    }
+
+    /* Progress bars */
+    .skill-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      border-radius: 4px;
+      position: relative;
+      transition: width 1.5s ease-in-out;
+    }
+
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Formulaire */
+    .form-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: white;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.2);
+    }
+
+    /* Canvas 3D */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 antialiased">
-  <a class="sr-only focus:not-sr-only p-2 bg-yellow-400 text-slate-900" href="#main">Aller au contenu</a>
+<body class="perspective-1000">
+  <!-- Canvas 3D Background -->
+  <canvas id="bg-canvas"></canvas>
+  
+  <!-- Particules -->
+  <div class="particles" id="particles"></div>
 
-  <header class="max-w-5xl mx-auto px-6 py-8">
-    <nav class="flex items-center justify-between" aria-label="Navigation principale">
+  <a class="sr-only focus:not-sr-only p-2 bg-[#00f5ff] text-slate-900 font-bold" href="#main">Aller au contenu</a>
+
+  <!-- Navigation 3D -->
+  <header class="fixed w-full z-50 nav-blur">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full avatar-gradient flex items-center justify-center text-slate-900 font-bold">D</div>
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#00f5ff] to-[#0099ff] flex items-center justify-center text-slate-900 font-bold font-orbitron">DT</div>
         <div>
-          <p class="text-sm text-slate-300">Daniel_Tech</p>
-          <p class="text-xs text-slate-400">Créateur d'identités digitales</p>
+          <p class="text-sm text-slate-300 font-space">Daniel_Tech</p>
+          <p class="text-xs text-slate-400 font-space">Développeur FullStack</p>
         </div>
       </div>
 
+      <div class="hidden md:flex items-center gap-6">
+        <a class="text-slate-300 hover:text-[#00f5ff] transition-colors font-space" href="#about">À propos</a>
+        <a class="text-slate-300 hover:text-[#00f5ff] transition-colors font-space" href="#skills">Compétences</a>
+        <a class="text-slate-300 hover:text-[#00f5ff] transition-colors font-space" href="#projects">Projets</a>
+        <a class="text-slate-300 hover:text-[#00f5ff] transition-colors font-space" href="#contact">Contact</a>
+      </div>
+
       <div class="flex items-center gap-4">
-        <a class="text-slate-300 hover:text-white text-sm" href="https://github.com/juankaisen3-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
-        <a class="text-slate-300 hover:text-white text-sm" href="https://linkedin.com/in/juan5" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
-        <a class="inline-flex items-center gap-2 px-3 py-1 rounded bg-yellow-500 text-slate-900 font-medium hover:bg-yellow-400" href="#contact">Contact</a>
+        <a class="text-slate-300 hover:text-[#00f5ff] transition-colors" href="https://github.com/juankaisen3-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.24-1.28-5.24-5.73 0-1.27.45-2.31 1.19-3.12-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.16-1.19 3.16-1.19.64 1.58.24 2.75.12 3.04.74.81 1.19 1.85 1.19 3.12 0 4.46-2.69 5.44-5.25 5.72.42.36.8 1.07.8 2.15v3.19c0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+        </a>
+        <a class="btn-neon font-space" href="#contact">Contact</a>
       </div>
     </nav>
   </header>
 
-  <main id="main" class="max-w-5xl mx-auto px-6">
-    <!-- HERO -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center py-8">
-      <div class="md:col-span-2">
-        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Daniel <span class="text-yellow-400">_Tech</span></h1>
-        <p class="mt-4 text-slate-300 max-w-2xl">
-          Développeur & créateur d'identités digitales (19 ans). Spécialisé en React, Tailwind, interfaces stylées, bots vocaux et systèmes modulaires d'avatars & badges.
-          Je conçois des expériences visuelles qui racontent une histoire.
+  <main id="main" class="pt-20">
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center section-3d px-6">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="transform-3d animate-slide-in">
+          <h1 class="text-5xl md:text-7xl font-orbitron font-bold leading-tight">
+            Daniel <span class="text-gradient">_Tech</span>
+          </h1>
+          <p class="mt-6 text-xl text-slate-300 font-space max-w-2xl">
+            Développeur <span class="text-[#00f5ff] font-semibold">FullStack</span> passionné par la création d'expériences digitales innovantes. 
+            Je transforme des idées en applications web performantes avec des technologies modernes.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="/assets/Daniel_CV.pdf" class="btn-neon inline-flex items-center justify-center gap-2 font-space" download>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Télécharger mon CV
+            </a>
+            <a href="#projects" class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-700 rounded-lg text-slate-300 hover:text-white hover:border-[#00f5ff] transition-all font-space">
+              Voir mes projets
+            </a>
+          </div>
+
+          <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="glass p-5 rounded-xl card-3d">
+              <h3 class="text-lg font-orbitron text-[#00f5ff]">Stack Technique</h3>
+              <ul class="mt-3 space-y-2 text-slate-300 font-space">
+                <li>⚡ React • Next.js • TypeScript</li>
+                <li>🚀 Node.js • Express • MongoDB</li>
+                <li>🎨 Tailwind • Three.js • Framer</li>
+                <li>🔧 Git • Docker • AWS</li>
+              </ul>
+            </div>
+            <div class="glass p-5 rounded-xl card-3d">
+              <h3 class="text-lg font-orbitron text-[#00f5ff]">Disponibilité</h3>
+              <p class="mt-3 text-slate-300 font-space">📍 Akanda, Gabon</p>
+              <p class="mt-2 text-slate-300 font-space">🕒 Freelance & CDI</p>
+              <p class="mt-2 text-sm text-[#00f5ff] font-space">Disponible immédiatement</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar 3D -->
+        <div class="flex justify-center transform-3d animate-float">
+          <div class="relative avatar-3d">
+            <div class="w-80 h-80 rounded-2xl overflow-hidden border-2 border-[#00f5ff] shadow-2xl animate-glow">
+              <img src="1.jpg" alt="Daniel_Tech" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -inset-4 bg-gradient-to-r from-[#00f5ff] to-[#0099ff] rounded-2xl blur-xl opacity-30 -z-10"></div>
+            
+            <!-- Badges flottants -->
+            <div class="absolute -top-4 -right-4 glass-accent px-4 py-2 rounded-full font-orbitron text-sm">
+              🚀 FullStack
+            </div>
+            <div class="absolute -bottom-4 -left-4 glass-accent px-4 py-2 rounded-full font-orbitron text-sm">
+              ⚡ Disponible
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 section-3d px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-4">
+          <span class="text-gradient">À Propos</span>
+        </h2>
+        <p class="text-xl text-slate-300 text-center max-w-3xl mx-auto font-space mb-16">
+          Passionné par le développement et l'innovation, je crée des solutions digitales qui allient performance et design.
         </p>
 
-        <div class="mt-6 flex flex-col sm:flex-row gap-3">
-          <a href="/assets/Daniel_CV.pdf" class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-slate-900 rounded-md font-semibold hover:bg-yellow-400" download>
-            Télécharger le CV (PDF)
-          </a>
-          <a href="#projects" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-700 rounded-md text-slate-300 hover:text-white">Voir les projets</a>
-        </div>
-
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="glass p-4 rounded-md">
-            <h3 class="text-sm text-yellow-400 font-semibold">Compétences clés</h3>
-            <ul class="mt-2 space-y-2 text-slate-300 text-sm">
-              <li>💻 React • HTML • CSS • JavaScript</li>
-              <li>🎨 Design UI / Branding & avatars</li>
-              <li>📱 Responsive / Mobile-first</li>
-              <li>🤖 Bots & modules interactifs</li>
-            </ul>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="transform-3d">
+            <div class="glass p-8 rounded-2xl card-3d">
+              <h3 class="text-2xl font-orbitron text-[#00f5ff] mb-6">Mon Parcours</h3>
+              <div class="space-y-6 font-space">
+                <div class="flex gap-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-full flex items-center justify-center text-slate-900 font-bold">
+                    19
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Développeur FullStack</h4>
+                    <p class="text-slate-300 mt-1">Création d'applications web complètes avec architectures modernes</p>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-full flex items-center justify-center text-slate-900 font-bold">
+                    🎯
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Expert en UI/UX</h4>
+                    <p class="text-slate-300 mt-1">Design d'interfaces intuitives et expériences utilisateur mémorables</p>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-full flex items-center justify-center text-slate-900 font-bold">
+                    🌍
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Vision Globale</h4>
+                    <p class="text-slate-300 mt-1">Français (natif), Anglais (courant) - Projets internationaux</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="glass p-4 rounded-md">
-            <h3 class="text-sm text-yellow-400 font-semibold">Contact rapide</h3>
-            <p class="mt-2 text-slate-300 text-sm">📍 Akanda, Gabon</p>
-            <p class="mt-1 text-slate-300 text-sm">✉️ <a class="text-yellow-400 hover:underline" href="mailto:juankaisen3@email.com">juankaisen3@email.com</a></p>
-          </div>
-        </div>
-      </div>
 
-      <!-- Avatar / Card -->
-      <aside class="flex justify-center md:justify-end">
-        <div class="w-56 glass rounded-xl p-5 flex flex-col items-center text-center shadow-lg">
-          <div class="w-28 h-28 rounded-full overflow-hidden flex items-center justify-center bg-slate-800">
-            <!-- Replace with real image if available -->
-            <svg width="88" height="88" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="text-yellow-400">
-              <rect width="24" height="24" rx="12" fill="currentColor" opacity="0.08"/>
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" fill="currentColor"/>
-              <path d="M4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v1H4v-1z" fill="currentColor" opacity="0.6"/>
-            </svg>
+          <div class="transform-3d">
+            <div class="glass p-8 rounded-2xl card-3d h-full">
+              <h3 class="text-2xl font-orbitron text-[#00f5ff] mb-6">Mes Valeurs</h3>
+              <div class="space-y-4 font-space">
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-[#00f5ff] rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-slate-300"><span class="text-white font-semibold">Innovation:</span> Toujours à la pointe des dernières technologies et tendances</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-[#00f5ff] rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-slate-300"><span class="text-white font-semibold">Qualité:</span> Code propre, maintenable et performances optimales</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-[#00f5ff] rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-slate-300"><span class="text-white font-semibold">Collaboration:</span> Communication transparente et travail d'équipe efficace</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-[#00f5ff] rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-slate-300"><span class="text-white font-semibold">Impact:</span> Création de solutions qui résolvent des problèmes réels</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <h4 class="mt-4 font-semibold text-lg">DANIEL</h4>
-          <p class="text-sm text-slate-300">Founder • Daniel_Tech & Verse</p>
-          <div class="mt-4 flex gap-3">
-            <a class="text-yellow-400 hover:opacity-80" href="https://github.com/juankaisen3-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <!-- GitHub SVG -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.24-1.28-5.24-5.73 0-1.27.45-2.31 1.19-3.12-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.16-1.19 3.16-1.19.64 1.58.24 2.75.12 3.04.74.81 1.19 1.85 1.19 3.12 0 4.46-2.69 5.44-5.25 5.72.42.36.8 1.07.8 2.15v3.19c0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
-            </a>
-            <a class="text-yellow-400 hover:opacity-80" href="mailto:juankaisen3@email.com" aria-label="Email">
-              <!-- Email SVG -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </a>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="py-8">
-      <h2 class="text-2xl font-bold text-yellow-400">Projets phares</h2>
-      <div class="mt-4 grid gap-4 md:grid-cols-3">
-        <article class="glass p-4 rounded-md">
-          <h3 class="font-semibold">JUANverse Console & Badges</h3>
-          <p class="text-slate-300 text-sm mt-2">Système modulaire pour avatars, fiches et notifications stylisées.</p>
-        </article>
-        <article class="glass p-4 rounded-md">
-          <h3 class="font-semibold">Bot D_C “Alva”</h3>
-          <p class="text-slate-300 text-sm mt-2">Bot à voix humaine avec style adaptatif et branding clanique.</p>
-        </article>
-        <article class="glass p-4 rounded-md">
-          <h3 class="font-semibold">WH-Fiches & Quiz Clan</h3>
-          <p class="text-slate-300 text-sm mt-2">Fiches interactives et quiz pour apprentissage en groupe.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="py-8">
-      <h2 class="text-2xl font-bold text-yellow-400">Compétences</h2>
-      <div class="mt-4 grid gap-4 md:grid-cols-3">
-        <div class="glass p-4 rounded-md">
-          <h4 class="font-semibold">Frontend</h4>
-          <p class="text-slate-300 text-sm mt-2">React • Tailwind • HTML • CSS • JS</p>
-        </div>
-        <div class="glass p-4 rounded-md">
-          <h4 class="font-semibold">Design & Branding</h4>
-          <p class="text-slate-300 text-sm mt-2">UI/UX • Avatars • Motion design</p>
-        </div>
-        <div class="glass p-4 rounded-md">
-          <h4 class="font-semibold">Automatisation & Bots</h4>
-          <p class="text-slate-300 text-sm mt-2">Bots vocaux, modules interactifs</p>
         </div>
       </div>
     </section>
 
-    <!-- About / Interests -->
-    <section class="py-8">
-      <h2 class="text-2xl font-bold text-yellow-400">À propos</h2>
-      <div class="mt-4 text-slate-300 max-w-3xl">
-        <p>Je conçois des expériences qui mélangent narration et identité digitale : avatars claniques, systèmes de badges, modules interactifs. Chaque projet est pensé pour vibrer avec style et sincérité.</p>
-        <p class="mt-3">Langues : Français (natif), Anglais (courant).</p>
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-20 section-3d px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-4">
+          <span class="text-gradient">Compétences</span>
+        </h2>
+        <p class="text-xl text-slate-300 text-center max-w-3xl mx-auto font-space mb-16">
+          Maîtrise complète du cycle de développement, du concept à la production
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Frontend -->
+          <div class="glass p-6 rounded-2xl card-3d">
+            <div class="w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-lg flex items-center justify-center mb-4">
+              <span class="text-slate-900 font-bold text-xl">⚡</span>
+            </div>
+            <h3 class="text-xl font-orbitron text-white mb-4">Frontend</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">React/Next.js</span>
+                  <span class="text-[#00f5ff]">95%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 95%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">TypeScript</span>
+                  <span class="text-[#00f5ff]">90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">Three.js</span>
+                  <span class="text-[#00f5ff]">85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="glass p-6 rounded-2xl card-3d">
+            <div class="w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-lg flex items-center justify-center mb-4">
+              <span class="text-slate-900 font-bold text-xl">🚀</span>
+            </div>
+            <h3 class="text-xl font-orbitron text-white mb-4">Backend</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">Node.js/Express</span>
+                  <span class="text-[#00f5ff]">92%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 92%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">MongoDB</span>
+                  <span class="text-[#00f5ff]">88%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 88%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">API REST/GraphQL</span>
+                  <span class="text-[#00f5ff]">90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DevOps & Tools -->
+          <div class="glass p-6 rounded-2xl card-3d">
+            <div class="w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-lg flex items-center justify-center mb-4">
+              <span class="text-slate-900 font-bold text-xl">🔧</span>
+            </div>
+            <h3 class="text-xl font-orbitron text-white mb-4">DevOps & Tools</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">Git/Docker</span>
+                  <span class="text-[#00f5ff]">87%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 87%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">AWS/Vercel</span>
+                  <span class="text-[#00f5ff]">83%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 83%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-space mb-1">
+                  <span class="text-slate-300">CI/CD</span>
+                  <span class="text-[#00f5ff]">80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="py-8">
-      <h2 class="text-2xl font-bold text-yellow-400">Contact</h2>
-      <div class="mt-4 grid gap-6 md:grid-cols-2">
-        <div class="glass p-4 rounded-md">
-          <h4 class="font-semibold">Coordonnées</h4>
-          <p class="text-slate-300 mt-2">📍 Akanda, Gabon</p>
-          <p class="text-slate-300 mt-1">✉️ <a class="text-yellow-400 hover:underline" href="mailto:juankaisen3@email.com">juankaisen3@email.com</a></p>
-          <p class="text-slate-300 mt-1">🌐 <a class="text-yellow-400 hover:underline" href="https://github.com/juankaisen3-dev" target="_blank" rel="noopener noreferrer">github.com/juankaisen3-dev</a></p>
-        </div>
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20 section-3d px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-4">
+          <span class="text-gradient">Projets Récents</span>
+        </h2>
+        <p class="text-xl text-slate-300 text-center max-w-3xl mx-auto font-space mb-16">
+          Des applications innovantes qui repoussent les limites du web moderne
+        </p>
 
-        <form class="glass p-4 rounded-md" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Formulaire de contact">
-          <label class="block text-sm text-slate-300">Nom</label>
-          <input name="name" class="mt-1 w-full rounded bg-transparent border border-slate-700 px-3 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
-          <label class="block text-sm text-slate-300 mt-3">Email</label>
-          <input type="email" name="email" class="mt-1 w-full rounded bg-transparent border border-slate-700 px-3 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
-          <label class="block text-sm text-slate-300 mt-3">Message</label>
-          <textarea name="message" rows="4" class="mt-1 w-full rounded bg-transparent border border-slate-700 px-3 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-yellow-400" required></textarea>
-          <div class="mt-4">
-            <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-slate-900 rounded-md font-semibold hover:bg-yellow-400">Envoyer</button>
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          <!-- Projet 1 -->
+          <div class="glass p-6 rounded-2xl card-3d group">
+            <div class="relative overflow-hidden rounded-xl mb-4">
+              <div class="w-full h-48 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-xl flex items-center justify-center">
+                <span class="text-slate-900 font-orbitron text-xl font-bold">JUANverse</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-orbitron text-white mb-2">JUANverse Console</h3>
+            <p class="text-slate-300 font-space mb-4">
+              Plateforme sociale immersive avec système d'avatars 3D, badges et notifications temps réel.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">React</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">Three.js</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">Node.js</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">WebSocket</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="flex-1 btn-neon text-center py-2 text-sm">Voir le projet</a>
+              <a href="#" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-[#00f5ff] hover:text-slate-900 transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.24-1.28-5.24-5.73 0-1.27.45-2.31 1.19-3.12-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.16-1.19 3.16-1.19.64 1.58.24 2.75.12 3.04.74.81 1.19 1.85 1.19 3.12 0 4.46-2.69 5.44-5.25 5.72.42.36.8 1.07.8 2.15v3.19c0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+              </a>
+            </div>
           </div>
-          <p class="text-xs text-slate-500 mt-2">Utilise Formspree (remplace l'URL action par la tienne) ou connecte ton backend.</p>
-        </form>
+
+          <!-- Projet 2 -->
+          <div class="glass p-6 rounded-2xl card-3d group">
+            <div class="relative overflow-hidden rounded-xl mb-4">
+              <div class="w-full h-48 bg-gradient-to-br from-[#ff00cc] to-[#3333ff] rounded-xl flex items-center justify-center">
+                <span class="text-white font-orbitron text-xl font-bold">Bot Alva</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-orbitron text-white mb-2">Bot D_C "Alva"</h3>
+            <p class="text-slate-300 font-space mb-4">
+              Assistante vocal IA avec reconnaissance naturelle et personnalité adaptative pour les communautés en ligne.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">Python</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">OpenAI</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">WebRTC</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">Redis</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="flex-1 btn-neon text-center py-2 text-sm">Voir le projet</a>
+              <a href="#" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-[#00f5ff] hover:text-slate-900 transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.24-1.28-5.24-5.73 0-1.27.45-2.31 1.19-3.12-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.16-1.19 3.16-1.19.64 1.58.24 2.75.12 3.04.74.81 1.19 1.85 1.19 3.12 0 4.46-2.69 5.44-5.25 5.72.42.36.8 1.07.8 2.15v3.19c0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Projet 3 -->
+          <div class="glass p-6 rounded-2xl card-3d group">
+            <div class="relative overflow-hidden rounded-xl mb-4">
+              <div class="w-full h-48 bg-gradient-to-br from-[#00ff88] to-[#00ccff] rounded-xl flex items-center justify-center">
+                <span class="text-slate-900 font-orbitron text-xl font-bold">NexusShop</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-orbitron text-white mb-2">NexusShop 3D</h3>
+            <p class="text-slate-300 font-space mb-4">
+              Plateforme e-commerce immersive avec personnalisation 3D en temps réel et réalité augmentée.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">Next.js</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">Three.js</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">Stripe</span>
+              <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 font-space">MongoDB</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="flex-1 btn-neon text-center py-2 text-sm">Voir le projet</a>
+              <a href="#" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-[#00f5ff] hover:text-slate-900 transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.24-1.28-5.24-5.73 0-1.27.45-2.31 1.19-3.12-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.16-1.19 3.16-1.19.64 1.58.24 2.75.12 3.04.74.81 1.19 1.85 1.19 3.12 0 4.46-2.69 5.44-5.25 5.72.42.36.8 1.07.8 2.15v3.19c0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 section-3d px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-orbitron font-bold text-center mb-4">
+          <span class="text-gradient">Travaillons Ensemble</span>
+        </h2>
+        <p class="text-xl text-slate-300 text-center max-w-2xl mx-auto font-space mb-16">
+          Prêt à donner vie à votre prochain projet ? Contactez-moi et discutons de vos idées.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Informations de contact -->
+          <div class="transform-3d">
+            <div class="glass p-8 rounded-2xl card-3d h-full">
+              <h3 class="text-2xl font-orbitron text-[#00f5ff] mb-6">Mes Coordonnées</h3>
+              
+              <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-lg flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white font-space">Localisation</h4>
+                    <p class="text-slate-300 font-space">Akanda, Gabon</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-lg flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white font-space">Email</h4>
+                    <a href="mailto:juankaisen3@gmail.com" class="text-[#00f5ff] hover:underline font-space">juankaisen3@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gradient-to-br from-[#00f5ff] to-[#0099ff] rounded-lg flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.24-1.28-5.24-5.73 0-1.27.45-2.31 1.19-3.12-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.16-1.19 3.16-1.19.64 1.58.24 2.75.12 3.04.74.81 1.19 1.85 1.19 3.12 0 4.46-2.69 5.44-5.25 5.72.42.36.8 1.07.8 2.15v3.19c0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white font-space">GitHub</h4>
+                    <a href="https://github.com/juankaisen3-dev" target="_blank" class="text-[#00f5ff] hover:underline font-space">github.com/juankaisen3-dev</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 pt-6 border-t border-slate-700">
+                <h4 class="font-semibold text-white font-space mb-3">Disponibilités</h4>
+                <div class="flex items-center gap-2 text-slate-300 font-space">
+                  <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  Disponible pour de nouvelles opportunités
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulaire de contact -->
+          <div class="transform-3d">
+            <div class="glass p-8 rounded-2xl card-3d h-full">
+              <h3 class="text-2xl font-orbitron text-[#00f5ff] mb-6">Envoyez un Message</h3>
+              
+              <form id="contact-form" class="space-y-4">
+                <div>
+                  <label class="block text-slate-300 mb-2 font-space">Nom</label>
+                  <input type="text" name="name" class="form-input" placeholder="Votre nom" required>
+                </div>
+                
+                <div>
+                  <label class="block text-slate-300 mb-2 font-space">Email</label>
+                  <input type="email" name="email" class="form-input" placeholder="votre@email.com" required>
+                </div>
+                
+                <div>
+                  <label class="block text-slate-300 mb-2 font-space">Sujet</label>
+                  <input type="text" name="subject" class="form-input" placeholder="Sujet du message" required>
+                </div>
+                
+                <div>
+                  <label class="block text-slate-300 mb-2 font-space">Message</label>
+                  <textarea name="message" rows="5" class="form-input" placeholder="Décrivez votre projet..." required></textarea>
+                </div>
+                
+                <button type="submit" class="w-full btn-neon font-space py-3">
+                  <span id="submit-text">Envoyer le message</span>
+                  <div id="submit-loader" class="hidden">
+                    <div class="w-5 h-5 border-2 border-slate-900 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                  </div>
+                </button>
+                
+                <p id="form-message" class="text-center text-sm mt-4"></p>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="max-w-5xl mx-auto px-6 py-8 text-center text-slate-400 text-sm">
-    © 2025 Daniel_Tech&Verse — CV avec style et flair
+  <footer class="py-8 text-center text-slate-400 font-space">
+    <div class="max-w-6xl mx-auto px-6">
+      <p>© 2025 Daniel_Tech — Développeur FullStack Créatif</p>
+      <p class="mt-2 text-sm">Construit avec passion et technologies modernes</p>
+    </div>
   </footer>
 
-  <!-- Minimal script for accessibility if needed -->
   <script>
-    // Example: focus visible outline fix for keyboard users
-    (function(){
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Tab') document.documentElement.classList.add('user-is-tabbing');
+    // Initialisation Three.js Background
+    function init3DBackground() {
+      const canvas = document.getElementById('bg-canvas');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+      
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      
+      // Geometry
+      const geometry = new THREE.IcosahedronGeometry(2, 0);
+      const material = new THREE.MeshPhongMaterial({
+        color: 0x00f5ff,
+        transparent: true,
+        opacity: 0.1,
+        wireframe: true
       });
-    })();
+      
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+      
+      // Lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+      
+      const directionalLight = new THREE.DirectionalLight(0x00f5ff, 0.5);
+      directionalLight.position.set(5, 5, 5);
+      scene.add(directionalLight);
+      
+      camera.position.z = 5;
+      
+      // Animation
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        mesh.rotation.x += 0.005;
+        mesh.rotation.y += 0.005;
+        
+        renderer.render(scene, camera);
+      }
+      
+      animate();
+      
+      // Resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    // Particules
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+          position: absolute;
+          width: ${Math.random() * 4 + 1}px;
+          height: ${Math.random() * 4 + 1}px;
+          background: #00f5ff;
+          border-radius: 50%;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          animation: float ${Math.random() * 10 + 5}s linear infinite;
+          opacity: ${Math.random() * 0.3 + 0.1};
+        `;
+        container.appendChild(particle);
+      }
+    }
+
+    // Gestion du formulaire
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const form = this;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const submitText = document.getElementById('submit-text');
+      const submitLoader = document.getElementById('submit-loader');
+      const formMessage = document.getElementById('form-message');
+      
+      // Afficher le loader
+      submitText.classList.add('hidden');
+      submitLoader.classList.remove('hidden');
+      submitBtn.disabled = true;
+      
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      try {
+        // Envoi vers Formspree (remplace par ton endpoint)
+        const response = await fetch('https://formspree.io/f/xjvnqgvk', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+          formMessage.textContent = '✅ Message envoyé avec succès!';
+          formMessage.className = 'text-center text-sm mt-4 text-green-400';
+          form.reset();
+        } else {
+          throw new Error('Erreur lors de l\'envoi');
+        }
+      } catch (error) {
+        formMessage.textContent = '❌ Erreur lors de l\'envoi. Réessayez ou contactez-moi directement.';
+        formMessage.className = 'text-center text-sm mt-4 text-red-400';
+      } finally {
+        // Réinitialiser le bouton
+        submitText.classList.remove('hidden');
+        submitLoader.classList.add('hidden');
+        submitBtn.disabled = false;
+        
+        // Cacher le message après 5s
+        setTimeout(() => {
+          formMessage.textContent = '';
+          formMessage.className = 'text-center text-sm mt-4';
+        }, 5000);
+      }
+    });
+
+    // Animation au scroll
+    function initScrollAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'slideIn 0.8s ease-out forwards';
+          }
+        });
+      }, observerOptions);
+
+      // Observer les sections
+      document.querySelectorAll('.section-3d').forEach(section => {
+        observer.observe(section);
+      });
+    }
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function() {
+      init3DBackground();
+      createParticles();
+      initScrollAnimations();
+      
+      // Animation des barres de compétences
+      const skillBars = document.querySelectorAll('.skill-progress');
+      skillBars.forEach(bar => {
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.width = bar.style.width;
+        }, 500);
+      });
+    });
+
+    // Smooth scroll pour la navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
