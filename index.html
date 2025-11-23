@@ -1,181 +1,206 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Daniel_Tech — CV & Portfolio</title>
+  <meta name="description" content="Daniel_Tech — développeur & créateur d'identités digitales. React, Tailwind, UI/UX, bots et projets créatifs. CV téléchargeable." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Daniel_Tech — CV & Portfolio" />
+  <meta property="og:description" content="Développeur & créateur d'identités digitales. React, Tailwind, UI/UX, bots et projets créatifs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-site.example/" />
+  <meta property="og:image" content="https://your-site.example/og-image.png" />
+  <link rel="icon" href="/favicon.ico" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>CV Daniel_Tech</title>
+
   <style>
+    /* petites personnalisations */
     :root {
-      --main-bg: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       --accent: #ffcc00;
-      --text-light: #f0f0f0;
-      --box-bg: rgba(255, 255, 255, 0.08);
+      --muted: #94a3b8;
+      --card-bg: rgba(255,255,255,0.04);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    .glass {
+      background: var(--card-bg);
+      backdrop-filter: blur(6px);
     }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--main-bg);
-      color: var(--text-light);
-      line-height: 1.6;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h1, h2 {
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .section {
-      margin-bottom: 30px;
-      border-left: 4px solid var(--accent);
-      padding-left: 15px;
-    }
-
-    .contact a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-    }
-
-    .skill-box, .project {
-      background-color: var(--box-bg);
-      padding: 12px;
-      border-radius: 8px;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 0.85em;
-      margin-top: 40px;
-      color: #aaa;
-    }
-
-    @media screen and (max-width: 600px) {
-      h1 {
-        font-size: 1.8em;
-      }
-
-      .section {
-        padding-left: 10px;
-        border-left: 3px solid var(--accent);
-      }
-
-      .skill-box, .project {
-        font-size: 0.95em;
-      }
+    /* avatar gradient */
+    .avatar-gradient {
+      background: linear-gradient(135deg,#0f172a 0%, #0ea5a4 50%, var(--accent) 100%);
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Daniel_verse</h1>
-    <p class="contact">
-      📍 Akanda, Gabon<br>
-      📧 juankaisen3@email.com<br>
-      🌐 <a href="https://github.com/juankaisen3-dev">https://github.com/juankaisen3-dev</a>
-    </p>
-            <div class="section">
-  <h2>À propos</h2>
-  <p class="text-sm text-gray-300 leading-relaxed">
-    <span class="inline-flex items-center gap-1">
-      <svg class="w-3 h-3 text-accent" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 100 16A8 8 0 008 0z"/></svg>
-      Je m'appelle <strong class="text-white">DANIEL</strong>, j'ai 19 ans.
-    </span>
-    <br>
-    Fondateur de <em class="text-accent">Daniel_Tech</em>, une entreprise où la technologie devient une forme d'expression artistique. Ma spécialité ? Fusionner <span class="font-semibold text-white">développement web</span>, <span class="font-semibold text-white">design responsive</span> et <span class="font-semibold text-white">création de bots expressifs</span> pour donner vie à des interfaces uniques, interactives et profondément personnalisées.
-  </p>
-  <p class="text-sm text-gray-300 mt-2">
-    Chaque projet est une extension de l'identité digitale : avatars claniques, fiches animées, modules interactifs… tout est pensé pour vibrer avec style et sincérité. J'explore les langages (<span class="text-white">React, HTML, CSS, Tailwind</span>), je joue avec les émotions (voix humaines, remix linguistique), et je construis des expériences immersives où chaque pixel a une intention.
-  </p>
-  <p class="text-sm text-gray-300 mt-2">
-    Bienvenue dans mon univers : <strong class="text-accent">Daniel_Tech&Verse</strong>, un espace où le code devient narration, et où chaque interaction raconte une histoire.
-  </p>
-</div>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 antialiased">
+  <a class="sr-only focus:not-sr-only p-2 bg-yellow-400 text-slate-900" href="#main">Aller au contenu</a>
 
-         
-    <div class="section">
-      <h2>Compétences</h2>
-      <div class="skills-grid">
-        <div class="skill-box">💻 React, HTML, CSS, JS, Tailwind</div>
-        <div class="skill-box">🎨 Branding visuel & avatars</div>
-        <div class="skill-box">🗣️ Rédaction stylisée & multilingue</div>
-        <div class="skill-box">📱 Responsive design & mobile-first</div>
-        <div class="skill-box">🤖 Création de bots, interfaces et modules</div>
-        <div class="skill-box">🧠 Remix linguistique & émotionnel</div>
+  <header class="max-w-5xl mx-auto px-6 py-8">
+    <nav class="flex items-center justify-between" aria-label="Navigation principale">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full avatar-gradient flex items-center justify-center text-slate-900 font-bold">D</div>
+        <div>
+          <p class="text-sm text-slate-300">Daniel_Tech</p>
+          <p class="text-xs text-slate-400">Créateur d'identités digitales</p>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
-      <h2>Projets phares</h2>
-      <div class="project">
-        <strong>JUANverse Console & Badges</strong><br>
-        Système modulaire pour avatars, fiches et notifications stylisées.
+      <div class="flex items-center gap-4">
+        <a class="text-slate-300 hover:text-white text-sm" href="https://github.com/juankaisen3-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+        <a class="text-slate-300 hover:text-white text-sm" href="https://linkedin.com/in/juan5" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        <a class="inline-flex items-center gap-2 px-3 py-1 rounded bg-yellow-500 text-slate-900 font-medium hover:bg-yellow-400" href="#contact">Contact</a>
       </div>
-      <div class="project">
-        <strong>Bot D_C “Alva”</strong><br>
-        Bot à voix humaine avec style adaptatif et branding clanique.
+    </nav>
+  </header>
+
+  <main id="main" class="max-w-5xl mx-auto px-6">
+    <!-- HERO -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center py-8">
+      <div class="md:col-span-2">
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Daniel <span class="text-yellow-400">_Tech</span></h1>
+        <p class="mt-4 text-slate-300 max-w-2xl">
+          Développeur & créateur d'identités digitales (19 ans). Spécialisé en React, Tailwind, interfaces stylées, bots vocaux et systèmes modulaires d'avatars & badges.
+          Je conçois des expériences visuelles qui racontent une histoire.
+        </p>
+
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a href="/assets/Daniel_CV.pdf" class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-slate-900 rounded-md font-semibold hover:bg-yellow-400" download>
+            Télécharger le CV (PDF)
+          </a>
+          <a href="#projects" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-700 rounded-md text-slate-300 hover:text-white">Voir les projets</a>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="glass p-4 rounded-md">
+            <h3 class="text-sm text-yellow-400 font-semibold">Compétences clés</h3>
+            <ul class="mt-2 space-y-2 text-slate-300 text-sm">
+              <li>💻 React • HTML • CSS • JavaScript</li>
+              <li>🎨 Design UI / Branding & avatars</li>
+              <li>📱 Responsive / Mobile-first</li>
+              <li>🤖 Bots & modules interactifs</li>
+            </ul>
+          </div>
+          <div class="glass p-4 rounded-md">
+            <h3 class="text-sm text-yellow-400 font-semibold">Contact rapide</h3>
+            <p class="mt-2 text-slate-300 text-sm">📍 Akanda, Gabon</p>
+            <p class="mt-1 text-slate-300 text-sm">✉️ <a class="text-yellow-400 hover:underline" href="mailto:juankaisen3@email.com">juankaisen3@email.com</a></p>
+          </div>
+        </div>
       </div>
-     
-      <div class="project">
-        <strong>WH-Fiches & Quiz Clan</strong><br>
-        Fiches linguistiques interactives pour apprentissage en groupe.
+
+      <!-- Avatar / Card -->
+      <aside class="flex justify-center md:justify-end">
+        <div class="w-56 glass rounded-xl p-5 flex flex-col items-center text-center shadow-lg">
+          <div class="w-28 h-28 rounded-full overflow-hidden flex items-center justify-center bg-slate-800">
+            <!-- Replace with real image if available -->
+            <svg width="88" height="88" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="text-yellow-400">
+              <rect width="24" height="24" rx="12" fill="currentColor" opacity="0.08"/>
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" fill="currentColor"/>
+              <path d="M4 20c0-2.21 3.58-4 8-4s8 1.79 8 4v1H4v-1z" fill="currentColor" opacity="0.6"/>
+            </svg>
+          </div>
+          <h4 class="mt-4 font-semibold text-lg">DANIEL</h4>
+          <p class="text-sm text-slate-300">Founder • Daniel_Tech & Verse</p>
+          <div class="mt-4 flex gap-3">
+            <a class="text-yellow-400 hover:opacity-80" href="https://github.com/juankaisen3-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <!-- GitHub SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.24-1.28-5.24-5.73 0-1.27.45-2.31 1.19-3.12-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.16-1.19 3.16-1.19.64 1.58.24 2.75.12 3.04.74.81 1.19 1.85 1.19 3.12 0 4.46-2.69 5.44-5.25 5.72.42.36.8 1.07.8 2.15v3.19c0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+            </a>
+            <a class="text-yellow-400 hover:opacity-80" href="mailto:juankaisen3@email.com" aria-label="Email">
+              <!-- Email SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-8">
+      <h2 class="text-2xl font-bold text-yellow-400">Projets phares</h2>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <article class="glass p-4 rounded-md">
+          <h3 class="font-semibold">JUANverse Console & Badges</h3>
+          <p class="text-slate-300 text-sm mt-2">Système modulaire pour avatars, fiches et notifications stylisées.</p>
+        </article>
+        <article class="glass p-4 rounded-md">
+          <h3 class="font-semibold">Bot D_C “Alva”</h3>
+          <p class="text-slate-300 text-sm mt-2">Bot à voix humaine avec style adaptatif et branding clanique.</p>
+        </article>
+        <article class="glass p-4 rounded-md">
+          <h3 class="font-semibold">WH-Fiches & Quiz Clan</h3>
+          <p class="text-slate-300 text-sm mt-2">Fiches interactives et quiz pour apprentissage en groupe.</p>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Langues</h2>
-      <p>🇫🇷 Français : natif<br>🇬🇧 Anglais : courant<br>🏴 Corse : remix créatif</p>
-    </div>
+    <!-- Skills -->
+    <section class="py-8">
+      <h2 class="text-2xl font-bold text-yellow-400">Compétences</h2>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+        <div class="glass p-4 rounded-md">
+          <h4 class="font-semibold">Frontend</h4>
+          <p class="text-slate-300 text-sm mt-2">React • Tailwind • HTML • CSS • JS</p>
+        </div>
+        <div class="glass p-4 rounded-md">
+          <h4 class="font-semibold">Design & Branding</h4>
+          <p class="text-slate-300 text-sm mt-2">UI/UX • Avatars • Motion design</p>
+        </div>
+        <div class="glass p-4 rounded-md">
+          <h4 class="font-semibold">Automatisation & Bots</h4>
+          <p class="text-slate-300 text-sm mt-2">Bots vocaux, modules interactifs</p>
+        </div>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>Centres d’intérêt</h2>
-      <p>Culture manga & gaming, remix linguistique, création d’identités digitales, soutien des frangins maudits, collaboration clanique.</p>
-    </div>
-      
-    </div>
-    <div class="footer">
-  <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 10px;">
-    <!-- GitHub -->
-    <a href="https://github.com/juankaisen3-dev" target="_blank" aria-label="GitHub">
-      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
-        <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.45.11-3.02 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.57.23 2.73.11 3.02.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.41-5.27 5.7.42.36.8 1.09.8 2.2v3.26c0 .31.21.68.8.56A10.5 10.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
-      </svg>
-    </a>
+    <!-- About / Interests -->
+    <section class="py-8">
+      <h2 class="text-2xl font-bold text-yellow-400">À propos</h2>
+      <div class="mt-4 text-slate-300 max-w-3xl">
+        <p>Je conçois des expériences qui mélangent narration et identité digitale : avatars claniques, systèmes de badges, modules interactifs. Chaque projet est pensé pour vibrer avec style et sincérité.</p>
+        <p class="mt-3">Langues : Français (natif), Anglais (courant).</p>
+      </div>
+    </section>
 
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/juan5" target="_blank" aria-label="LinkedIn">
-      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
-        <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.16h.05c.5-.95 1.72-1.95 3.55-1.95 3.8 0 4.5 2.5 4.5 5.75V24h-4v-7.5c0-1.8-.03-4.1-2.5-4.1-2.5 0-2.9 1.95-2.9 3.95V24h-4V8z"/>
-      </svg>
-    </a>
+    <!-- Contact -->
+    <section id="contact" class="py-8">
+      <h2 class="text-2xl font-bold text-yellow-400">Contact</h2>
+      <div class="mt-4 grid gap-6 md:grid-cols-2">
+        <div class="glass p-4 rounded-md">
+          <h4 class="font-semibold">Coordonnées</h4>
+          <p class="text-slate-300 mt-2">📍 Akanda, Gabon</p>
+          <p class="text-slate-300 mt-1">✉️ <a class="text-yellow-400 hover:underline" href="mailto:juankaisen3@email.com">juankaisen3@email.com</a></p>
+          <p class="text-slate-300 mt-1">🌐 <a class="text-yellow-400 hover:underline" href="https://github.com/juankaisen3-dev" target="_blank" rel="noopener noreferrer">github.com/juankaisen3-dev</a></p>
+        </div>
 
-    <!-- Email -->
-    <a href="mailto:juankaisen5@email.com" aria-label="Email">
-      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
-        <path d="M12 13.065L.5 6.5V18c0 .828.672 1.5 1.5 1.5h20c.828 0 1.5-.672 1.5-1.5V6.5l-11.5 6.565zM22.5 4.5h-21c-.828 0-1.5.672-1.5 1.5v.5l12 6.857L24 6.5v-.5c0-.828-.672-1.5-1.5-1.5z"/>
-      </svg>
-    </a>
-  </div>
-   <div class="footer">
-      © 2025 Daniel_Tech&Verse – CV  avec style et flair😌
-  </div>
+        <form class="glass p-4 rounded-md" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Formulaire de contact">
+          <label class="block text-sm text-slate-300">Nom</label>
+          <input name="name" class="mt-1 w-full rounded bg-transparent border border-slate-700 px-3 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
+          <label class="block text-sm text-slate-300 mt-3">Email</label>
+          <input type="email" name="email" class="mt-1 w-full rounded bg-transparent border border-slate-700 px-3 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
+          <label class="block text-sm text-slate-300 mt-3">Message</label>
+          <textarea name="message" rows="4" class="mt-1 w-full rounded bg-transparent border border-slate-700 px-3 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-yellow-400" required></textarea>
+          <div class="mt-4">
+            <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-slate-900 rounded-md font-semibold hover:bg-yellow-400">Envoyer</button>
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Utilise Formspree (remplace l'URL action par la tienne) ou connecte ton backend.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="max-w-5xl mx-auto px-6 py-8 text-center text-slate-400 text-sm">
+    © 2025 Daniel_Tech&Verse — CV avec style et flair
+  </footer>
+
+  <!-- Minimal script for accessibility if needed -->
+  <script>
+    // Example: focus visible outline fix for keyboard users
+    (function(){
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Tab') document.documentElement.classList.add('user-is-tabbing');
+      });
+    })();
+  </script>
 </body>
 </html>
