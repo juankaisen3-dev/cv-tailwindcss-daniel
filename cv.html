@@ -4,170 +4,428 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>CV Daniel_Tech</title>
+  <title>CV – Oyougou Daniel Israël</title>
   <style>
     :root {
-      --main-bg: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      --main-bg: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
       --accent: #ffcc00;
+      --accent-dim: rgba(255, 204, 0, 0.15);
       --text-light: #f0f0f0;
-      --box-bg: rgba(255, 255, 255, 0.08);
+      --text-muted: #a0b0bc;
+      --box-bg: rgba(255, 255, 255, 0.06);
+      --box-border: rgba(255, 255, 255, 0.1);
+      --section-border: rgba(255, 204, 0, 0.6);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', system-ui, sans-serif;
       background: var(--main-bg);
+      background-attachment: fixed;
       color: var(--text-light);
-      line-height: 1.6;
-      padding: 20px;
+      line-height: 1.65;
+      padding: 32px 20px 60px;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
+    .container { max-width: 960px; margin: auto; }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
     }
 
-    h1, h2 {
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.25);
+    }
+
+    .header-info h1 {
+      font-size: 2rem;
+      font-weight: 700;
       color: var(--accent);
       text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .header-info .title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #7ecfff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 10px;
     }
 
-    .section {
-      margin-bottom: 30px;
-      border-left: 4px solid var(--accent);
-      padding-left: 15px;
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
     }
 
-    .contact a {
+    .contact-grid a { color: var(--accent); text-decoration: none; }
+    .contact-grid a:hover { text-decoration: underline; }
+
+    .badge-available {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 12px;
+      background: rgba(255, 204, 0, 0.15);
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      font-size: 0.78rem;
       color: var(--accent);
-      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    .skills-grid {
+    /* ── SECTIONS ── */
+    .section {
+      margin-bottom: 32px;
+      border-left: 4px solid var(--accent);
+      padding-left: 18px;
+    }
+
+    .section h2 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .section p { font-size: 0.92rem; color: #d8e8f0; }
+
+    /* ── SKILLS ── */
+    .skills-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .skills-table tr { border-bottom: 1px solid var(--box-border); }
+    .skills-table tr:last-child { border-bottom: none; }
+    .skills-table td { padding: 9px 6px; vertical-align: top; }
+    .skill-cat {
+      width: 30%;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+      padding-right: 16px;
+    }
+    .skill-val { color: #d0e4f0; }
+
+    /* ── EXPERIENCE ── */
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .exp-title { font-weight: 700; font-size: 0.95rem; }
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .exp-location {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+
+    /* ── PROJECTS ── */
+    .project {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .project-title-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .project-name { font-weight: 700; font-size: 0.95rem; color: #e8f4ff; }
+
+    .project-tag {
+      font-size: 0.72rem;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .tag-python  { background: rgba(59,130,246,0.25); color: #93c5fd; border: 1px solid rgba(59,130,246,0.4); }
+    .tag-react   { background: rgba(6,182,212,0.2);  color: #67e8f9; border: 1px solid rgba(6,182,212,0.4); }
+    .tag-node    { background: rgba(34,197,94,0.2);  color: #86efac; border: 1px solid rgba(34,197,94,0.4); }
+    .tag-telegram{ background: rgba(14,165,233,0.2); color: #7dd3fc; border: 1px solid rgba(14,165,233,0.4); }
+
+    .project ul { list-style: none; padding: 0; }
+    .project ul li {
+      font-size: 0.86rem;
+      color: #c8dce8;
+      padding: 3px 0 3px 16px;
+      position: relative;
+    }
+    .project ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 5px;
+    }
+
+    /* ── FORMATION ── */
+    .formation-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
 
-    .skill-box, .project {
-      background-color: var(--box-bg);
-      padding: 12px;
-      border-radius: 8px;
+    .formation-box {
+      background: var(--box-bg);
+      border: 1px solid var(--box-border);
+      border-radius: 10px;
+      padding: 14px 16px;
     }
 
+    .formation-box h3 { font-size: 0.9rem; font-weight: 700; color: #e8f4ff; margin-bottom: 2px; }
+    .formation-box .sub { font-size: 0.8rem; font-style: italic; color: var(--text-muted); margin-bottom: 8px; }
+    .formation-box ul { list-style: none; padding: 0; }
+    .formation-box ul li {
+      font-size: 0.84rem;
+      color: #c0d4e0;
+      padding: 2px 0 2px 14px;
+      position: relative;
+    }
+    .formation-box ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
     .footer {
       text-align: center;
-      font-size: 0.85em;
-      margin-top: 40px;
-      color: #aaa;
+      margin-top: 48px;
+      color: #6a8090;
+      font-size: 0.82rem;
     }
 
-    @media screen and (max-width: 600px) {
-      h1 {
-        font-size: 1.8em;
-      }
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 12px;
+    }
 
-      .section {
-        padding-left: 10px;
-        border-left: 3px solid var(--accent);
-      }
+    .footer-icons a { opacity: 0.75; transition: opacity 0.2s; }
+    .footer-icons a:hover { opacity: 1; }
 
-      .skill-box, .project {
-        font-size: 0.95em;
-      }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .header-info h1 { font-size: 1.5rem; }
+      .header-info .title { font-size: 0.82rem; }
+      .skill-cat { width: 38%; font-size: 0.8rem; }
+      .formation-grid { grid-template-columns: 1fr; }
+      .exp-header { flex-direction: column; gap: 2px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 20px; flex-wrap: wrap;">
-      <img src="1.jpg" alt="Daniel_verse" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); flex-shrink: 0;">
-      <div>
-        <h1 style="margin-bottom: 6px;">Daniel_verse</h1>
-        <p class="contact">
-          📍 Akanda, Gabon<br>
-          📧 juankaisen3@email.com<br>
-          🌐 <a href="https://github.com/juankaisen3-dev">https://github.com/juankaisen3-dev</a>
-        </p>
+
+    <!-- ── HEADER ── -->
+    <div class="header">
+      <img src="1.jpg" alt="Oyougou Daniel Israël" class="avatar">
+      <div class="header-info">
+        <h1>Oyougou Daniel Israël</h1>
+        <div class="title">Développeur Full-Stack Junior · Backend, IA &amp; Automatisation</div>
+        <div class="contact-grid">
+          <span>📍 Akanda, Gabon</span>
+          <span>📞 <a href="tel:+24174085772">+241 74 08 57 72</a></span>
+          <span>📧 <a href="mailto:juankaisen3@email.com">juankaisen3@email.com</a></span>
+          <span>🌐 <a href="https://cv-daniel-tailwindcss.vercel.app/" target="_blank">cv-daniel-tailwindcss.vercel.app</a></span>
+          <span>💻 <a href="https://github.com/juankaisen3-dev" target="_blank">github.com/juankaisen3-dev</a></span>
+        </div>
+        <div class="badge-available">⚡ Disponibilité immédiate · CDI / CDD / Freelance</div>
       </div>
     </div>
 
+    <!-- ── PROFIL ── -->
     <div class="section">
       <h2>Profil</h2>
-      <p>Créateur hybride entre tech et art, je développe des interfaces, bots et modules expressifs. Mon univers : Daniel_tech&Verse, où chaque fiche, badge ou avatar est une extension de l'identité digitale.</p>
+      <p>
+        Développeur Full-Stack de 20 ans, propulsé par un apprentissage autodidacte rigoureux et une passion absolue pour l'informatique.
+        Spécialisé dans la conception d'architectures back-end robustes, l'intégration d'APIs complexes (TMDB, IA, Webhooks) et le développement
+        d'interfaces front-end modernes et réactives. Expert dans l'automatisation via la création de bots intelligents et l'implémentation de
+        solutions basées sur l'Intelligence Artificielle et la cybersécurité. Axé sur la performance, la flexibilité algorithmique et la qualité du code.
+      </p>
     </div>
 
+    <!-- ── COMPÉTENCES ── -->
     <div class="section">
-      <h2>Compétences</h2>
-      <div class="skills-grid">
-        <div class="skill-box">💻 React, HTML, CSS, JS, Tailwind</div>
-        <div class="skill-box">🎨 Branding visuel & avatars</div>
-        <div class="skill-box">🗣️ Rédaction stylisée & multilingue</div>
-        <div class="skill-box">📱 Responsive design & mobile-first</div>
-        <div class="skill-box">🤖 Création de bots, interfaces et modules</div>
-        <div class="skill-box">🧠 Remix linguistique & émotionnel</div>
+      <h2>Compétences Techniques</h2>
+      <table class="skills-table">
+        <tr>
+          <td class="skill-cat">⚙️ Back-end &amp; Automatisation</td>
+          <td class="skill-val">Python, Node.js, Express, PHP, conception d'APIs REST, architectures événementielles.</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">🤖 IA &amp; Cybersécurité</td>
+          <td class="skill-val">Intégration de LLMs, NLP, hacking éthique, prompt engineering sécurisé, Blue Teaming.</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">🎨 Front-end &amp; Mobile</td>
+          <td class="skill-val">React.js, HTML5, Tailwind CSS, Flutter/Dart, Single Page Applications (SPA).</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">🗄️ Bases de données</td>
+          <td class="skill-val">PostgreSQL, MySQL, MongoDB — modélisation, indexation et requêtes optimisées.</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">🛠️ DevOps &amp; Outils</td>
+          <td class="skill-val">Git, GitHub, Docker, déploiement cloud (Vercel, Railway, Heroku, VPS Linux), Postman.</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">📹 Traitement Multimédia</td>
+          <td class="skill-val">APIs d'extraction multimédia — Shazam API, scrapers YouTube / TikTok / Instagram.</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ── EXPÉRIENCE ── -->
+    <div class="section">
+      <h2>Expérience Professionnelle &amp; Projets Majeurs</h2>
+
+      <div class="exp-header">
+        <span class="exp-title">Développeur Full-Stack &amp; Ingénieur IA <span style="font-weight:400;color:var(--text-muted);">(Autodidacte / Freelance)</span></span>
+        <span class="exp-date">2023 – Présent</span>
       </div>
-    </div>
+      <div class="exp-location">Gabon / Remote</div>
 
-    <div class="section">
-      <h2>Projets phares</h2>
+      <!-- Project 1 -->
       <div class="project">
-        <strong>JUANverse Console & Badges</strong><br>
-        Système modulaire pour avatars, fiches et notifications stylisées.
+        <div class="project-title-row">
+          <span class="project-name">Alva_AI — Modèle d'IA Avancé &amp; Assistant Cyber-Sécurité</span>
+          <span class="project-tag tag-python">Python &amp; LLM Integration</span>
+        </div>
+        <ul>
+          <li>Conception et déploiement d'un modèle d'IA avancé exploitant les architectures GPT et Gemini.</li>
+          <li>Implémentation d'une logique d'apprentissage adaptatif multi-domaine (informatique générale, développement technique).</li>
+          <li>Développement d'un module hacking éthique avec système de traitement étendu pour des analyses de sécurité approfondies et audits de vulnérabilités.</li>
+        </ul>
       </div>
+
+      <!-- Project 2 -->
       <div class="project">
-        <strong>Bot D_C “Alva”</strong><br>
-        Bot à voix humaine avec style adaptatif et branding clanique.
+        <div class="project-title-row">
+          <span class="project-name">Animeflow &amp; WinStream — Plateformes de Streaming Multimédia</span>
+          <span class="project-tag tag-react">React</span>
+          <span class="project-tag tag-node">Node.js &amp; Tailwind CSS</span>
+        </div>
+        <ul>
+          <li>Développement d'interfaces utilisateurs immersives, fluides et entièrement responsives.</li>
+          <li>Interconnexion dynamique avec l'API TMDB pour la récupération et la mise à jour en temps réel des métadonnées de films et séries.</li>
+          <li>Optimisation des flux de streaming vidéo et de la vitesse de chargement des catalogues de médias.</li>
+        </ul>
       </div>
-     
+
+      <!-- Project 3 -->
       <div class="project">
-        <strong>WH-Fiches & Quiz Clan</strong><br>
-        Fiches linguistiques interactives pour apprentissage en groupe.
+        <div class="project-title-row">
+          <span class="project-name">Aizen_bot &amp; Tiktokdanielbot — Écosystème d'Automatisation</span>
+          <span class="project-tag tag-python">Python</span>
+          <span class="project-tag tag-telegram">Telegram Bot API</span>
+        </div>
+        <ul>
+          <li><strong>Aizen_bot :</strong> Agent conversationnel en Python capable d'exécuter des requêtes complexes de téléchargement direct (vidéos, musiques, films).</li>
+          <li><strong>Tiktokdanielbot :</strong> Intégration de l'API Shazam pour l'identification et le téléchargement automatisé de pistes audio à partir d'un extrait vocal.</li>
+          <li>Système de scraping multi-plateforme (YouTube, Instagram, TikTok) avec moteur de recherche par titre.</li>
+        </ul>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project">
+        <div class="project-title-row">
+          <span class="project-name">JUANverse Console &amp; Badges — Système d'Identité Digitale</span>
+          <span class="project-tag tag-react">React</span>
+          <span class="project-tag tag-node">Node.js</span>
+        </div>
+        <ul>
+          <li>Système modulaire pour avatars, fiches et notifications stylisées.</li>
+          <li>Création d'identités digitales clés-en-main : badges, fiches personnalisées et branding clanique.</li>
+        </ul>
       </div>
     </div>
 
+    <!-- ── FORMATION & LANGUES ── -->
     <div class="section">
-      <h2>Langues</h2>
-      <p>🇫🇷 Français : natif<br>🇬🇧 Anglais : courant<br>🏴 Corse : remix créatif</p>
+      <h2>Formation &amp; Langues</h2>
+      <div class="formation-grid">
+        <div class="formation-box">
+          <h3>Développement Logiciel &amp; Systèmes</h3>
+          <div class="sub">Autodidacte · 2021 – Présent</div>
+          <ul>
+            <li>Maîtrise via analyse de projets open-source et documentation technique officielle.</li>
+            <li>Veille technologique active et quotidienne sur la cybersécurité et les frameworks d'IA.</li>
+          </ul>
+        </div>
+        <div class="formation-box">
+          <h3>Langues</h3>
+          <div class="sub">&nbsp;</div>
+          <ul>
+            <li><strong>Français :</strong> Courant · Langue maternelle</li>
+            <li><strong>Anglais :</strong> Technique — lecture fluide de documentations, rédaction de code, Stack Overflow, GitHub.</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>Centres d’intérêt</h2>
-      <p>Culture manga & gaming, remix linguistique, création d’identités digitales, soutien des frangins maudits, collaboration clanique.</p>
-    </div>
-      
-    </div>
+    <!-- ── FOOTER ── -->
     <div class="footer">
-  <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 10px;">
-    <!-- GitHub -->
-    <a href="https://github.com/juankaisen3-dev" target="_blank" aria-label="GitHub">
-      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
-        <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.45.11-3.02 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.57.23 2.73.11 3.02.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.41-5.27 5.7.42.36.8 1.09.8 2.2v3.26c0 .31.21.68.8.56A10.5 10.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
-      </svg>
-    </a>
+      <div class="footer-icons">
+        <a href="https://github.com/juankaisen3-dev" target="_blank" aria-label="GitHub">
+          <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
+            <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.93.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.45.11-3.02 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.57.23 2.73.11 3.02.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.41-5.27 5.7.42.36.8 1.09.8 2.2v3.26c0 .31.21.68.8.56A10.5 10.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/juan5" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
+            <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.16h.05c.5-.95 1.72-1.95 3.55-1.95 3.8 0 4.5 2.5 4.5 5.75V24h-4v-7.5c0-1.8-.03-4.1-2.5-4.1-2.5 0-2.9 1.95-2.9 3.95V24h-4V8z"/>
+          </svg>
+        </a>
+        <a href="mailto:juankaisen3@email.com" aria-label="Email">
+          <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
+            <path d="M12 13.065L.5 6.5V18c0 .828.672 1.5 1.5 1.5h20c.828 0 1.5-.672 1.5-1.5V6.5l-11.5 6.565zM22.5 4.5h-21c-.828 0-1.5.672-1.5 1.5v.5l12 6.857L24 6.5v-.5c0-.828-.672-1.5-1.5-1.5z"/>
+          </svg>
+        </a>
+      </div>
+      © 2025 Oyougou Daniel Israël · Daniel_Tech&amp;Verse
+    </div>
 
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/juan5" target="_blank" aria-label="LinkedIn">
-      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
-        <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.6v2.16h.05c.5-.95 1.72-1.95 3.55-1.95 3.8 0 4.5 2.5 4.5 5.75V24h-4v-7.5c0-1.8-.03-4.1-2.5-4.1-2.5 0-2.9 1.95-2.9 3.95V24h-4V8z"/>
-      </svg>
-    </a>
-
-    <!-- Email -->
-    <a href="mailto:juankaisen5@email.com" aria-label="Email">
-      <svg width="24" height="24" fill="#ffcc00" viewBox="0 0 24 24">
-        <path d="M12 13.065L.5 6.5V18c0 .828.672 1.5 1.5 1.5h20c.828 0 1.5-.672 1.5-1.5V6.5l-11.5 6.565zM22.5 4.5h-21c-.828 0-1.5.672-1.5 1.5v.5l12 6.857L24 6.5v-.5c0-.828-.672-1.5-1.5-1.5z"/>
-      </svg>
-    </a>
-  </div>
-   <div class="footer">
-      © 2025 Daniel_Tech&Verse – CV  avec style et flair😌
   </div>
 </body>
 </html>
