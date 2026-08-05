@@ -35,8 +35,8 @@ const links = [
   {
     icon: <SiTelegram />,
     label: 'Telegram',
-    value: '@danielverse',
-    href: 'https://t.me/danielverse',
+    value: '@ikchigo56',
+    href: 'https://t.me/ikchigo56',
     color: '#38bdf8',
   },
 ]
