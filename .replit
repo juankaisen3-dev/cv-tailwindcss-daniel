@@ -1,4 +1,4 @@
-modules = ["web", "python-base-3.13"]
+modules = ["web", "python-base-3.13", "nodejs-20"]
 
 [nix]
 channel = "stable-25_05"
@@ -24,7 +24,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python3 -m http.server 5000"
+args = "cd portfolio && npm run dev"
 
 [[ports]]
 localPort = 5000
