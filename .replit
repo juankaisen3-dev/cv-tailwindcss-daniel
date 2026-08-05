@@ -1,7 +1,31 @@
-modules = ["web"]
+modules = ["web", "python-base-3.13"]
 
 [nix]
 channel = "stable-25_05"
 
 [agent]
 expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "CV Preview"
+
+[[workflows.workflow]]
+name = "CV Preview"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 -m http.server 5000"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
