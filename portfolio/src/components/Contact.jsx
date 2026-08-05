@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
-import { SiGithub, SiVercel, SiTelegram } from 'react-icons/si'
+import { SiGithub, SiWhatsapp, SiTelegram } from 'react-icons/si'
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
 
 const links = [
@@ -26,11 +26,11 @@ const links = [
     color: '#e2e8f0',
   },
   {
-    icon: <SiVercel />,
-    label: 'Portfolio live',
-    value: 'cv-daniel-tailwindcss.vercel.app',
-    href: 'https://cv-daniel-tailwindcss.vercel.app/',
-    color: '#e2e8f0',
+    icon: <SiWhatsapp />,
+    label: 'WhatsApp',
+    value: '+241 074 08 57 72',
+    href: 'https://wa.me/241074085772',
+    color: '#22c55e',
   },
   {
     icon: <SiTelegram />,

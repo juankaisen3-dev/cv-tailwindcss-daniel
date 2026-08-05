@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
-import { SiVercel } from 'react-icons/si'
+import { SiWhatsapp } from 'react-icons/si'
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from 'react-icons/hi'
 
 const fade = (dir = 'left') => ({
@@ -66,7 +66,7 @@ export default function About() {
               { icon: <HiOutlineLocationMarker />, label: 'Akanda, Gabon' },
               { icon: <HiOutlinePhone />,         label: '+241 74 08 57 72' },
               { icon: <HiOutlineMail />,          label: 'juankaisen3@email.com' },
-              { icon: <SiVercel style={{ fontSize: 13 }} />, label: 'cv-daniel-tailwindcss.vercel.app', link: 'https://cv-daniel-tailwindcss.vercel.app/' },
+              { icon: <SiWhatsapp />, label: '+241 074 08 57 72', link: 'https://wa.me/241074085772' },
             ].map(({ icon, label, link }) => (
               <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.87rem', color: 'var(--muted)' }}>
                 <span style={{ color: 'var(--gold)', fontSize: 15, flexShrink: 0 }}>{icon}</span>
